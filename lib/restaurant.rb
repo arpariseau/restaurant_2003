@@ -11,7 +11,9 @@ class Restaurant
     clock = @opening_time.delete_suffix(":00").to_i
     clock += time
     if clock > 24
-      clock -= 24
+      until clock < 24
+        clock -= 24
+      end
     end
     return clock.to_s + ":00"
   end
@@ -36,7 +38,9 @@ class Restaurant
     clock = @opening_time.delete_suffix(":00").to_i
     clock += time
     if clock > 24
-      clock -= 24
+      until clock < 24
+        clock -= 24
+      end
     end
     if clock > 12
       clock -= 12

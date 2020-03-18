@@ -73,4 +73,11 @@ class RestaurantTest < Minitest::Test
     assert_equal "Il Posto will be closing at 11:00PM", restaurant2.announce_closing_time(7)
   end
 
+  def test_greater_than_24_hours
+    restaurant = Restaurant.new('18:00', 'Night Owl Bistro')
+
+    assert_equal '2:00', restaurant.closing_time(8)
+    assert_equal "Night Owl Bistro will be closing at 6:00PM", restaurant.announce_closing_time(72)
+  end
+
 end
