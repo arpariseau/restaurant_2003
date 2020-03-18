@@ -9,7 +9,11 @@ class Restaurant
 
   def closing_time(time)
     clock = @opening_time.delete_suffix(":00").to_i
-    (clock + time).to_s + ":00"
+    clock += time
+    if clock > 24
+      clock -= 24
+    end
+    return clock.to_s + ":00"
   end
 
   def add_dish(dish)
@@ -31,6 +35,9 @@ class Restaurant
   def announce_closing_time(time)
     clock = @opening_time.delete_suffix(":00").to_i
     clock += time
+    if clock > 24
+      clock -= 24
+    end
     if clock > 12
       clock -= 12
       return "#{@name} will be closing at #{clock}:00PM"
